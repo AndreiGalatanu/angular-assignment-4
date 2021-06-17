@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-group-control',
@@ -7,9 +7,11 @@ import { Component, OnInit, Output } from '@angular/core';
 })
 export class GroupControlComponent implements OnInit {
 
-  @Output() secCount = 0;
+  secCount = 0;
   interval;
 
+  @Output() timerStart = new EventEmitter<number>();
+  @Output() timerStop = new EventEmitter();
   constructor() {
 
 
@@ -18,14 +20,15 @@ export class GroupControlComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onStartGame($event) {
+  onStartGame() {
     this.interval = setInterval(() => {
+      this.timerStart.emit(this.secCount + 1);
       this.secCount++;
     }, 1000)
   }
 
-  onEndGame($event) {
-    clearInterval(this.interval);
+  onEndGame() {
+    clearInterval(this.interval)
   }
 
 }
