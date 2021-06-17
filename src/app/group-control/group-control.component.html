@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-xs-6">
+    <div class="btn btn-primary" (click)="onStartGame($event)">Start</div>
+    <p>{{ secCount }}</p>
+  </div>
+  <div class="col-xs-6">
+    <div class="btn btn-danger" (click)="onEndGame($event)">Stop</div>
+
+    <p>Final count = {{ secCount }}</p>
+  </div>
+</div>
